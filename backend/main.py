@@ -1,11 +1,10 @@
 from fastapi import FastAPI
-from app.api.employee import router as employee_router
+from app.database.connection import engine
 
-app = FastAPI(title="Employee Management System", version="1.0.0")
-app.include_router(employee_router)
+app = FastAPI(title="Employee Management API")
 
 @app.get("/")
-def home() -> dict:
+def home():
     return {
-        "message": "Welcome Vijay"
+        "message": "FastAPI + MySQL Connected"
     }
