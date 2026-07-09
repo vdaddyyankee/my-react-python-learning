@@ -1,4 +1,5 @@
 from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
 from app.config import settings
 
 DATABASE_URL = (
@@ -6,6 +7,8 @@ DATABASE_URL = (
     f"@{settings.DB_HOST}:{settings.DB_PORT}/{settings.DB_NAME}"
 )
 
-engine = create_engine(DATABASE_URL)
+engine = create_engine(DATABASE_URL, echo=True)
+
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 print("Database Connected Successfully!")
